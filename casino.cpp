@@ -4,16 +4,18 @@
 #include <math.h>
 #include <ctime>
 
-unsigned long long randomizer(long int maxRand)
+//My random function, replaced by default random gen
+
+/*unsigned long long randomizer(long int maxRand)
 {
 	static unsigned long seed = time(0);
 	seed = (2281337999 * seed + 14486661337);
 		return seed % maxRand;
-}
+}*/
 
 using namespace std;
 
-const int cells = 100000;
+const int cells = 10000000;
 int dayArray[cells];
 long moreThanTen;
 long long maxCoins = 10;
@@ -25,7 +27,6 @@ long long middleDays;
 long long currCoins;
 long long coins = 10;
 long long diffCount;
-bool step = TRUE;
 double cell = cells * 1.0;
 long long i = 0;
 long long j=0;
@@ -35,16 +36,17 @@ double long percentage;
 int main()
 {
 SetConsoleTitle("50-50 casino");
+srand(time(0));
 {
-	while(step == TRUE && i != cells)
+	while(i != cells)
 	{
-		diffCount = randomizer(99999);
+		diffCount = rand() % 9999;
 		k++;
-		if(diffCount > 49999)
+		if(diffCount > 4499)
 		{
 			coins+=1;
 		}
-		else if(diffCount < 50000)
+		else if(diffCount < 4500)
 		{
 			coins-=2;
 		}
@@ -56,17 +58,16 @@ SetConsoleTitle("50-50 casino");
 		if(coins <= 0)
 		{
 			coins = 0;
-			step = FALSE;
 			i++;
-			dayArray[j+=1] = k;
+			dayArray[j+=1] = k; //Write the number of days from each attempt into a single array element
 			percentage = (i/cell)*100.0;
 			cout << "\b\b\b\b\b\b\b\b\b\b\b" << percentage << "%";
 			coins = 10;
 			k = 0;
-			step = TRUE;
 		}
 	}
 	system("cls");
+	//Statistical sample of array elements
 	maxDays = dayArray[1];
 	for (int f = 0; f < cells; f++) 
 	{
@@ -74,8 +75,8 @@ SetConsoleTitle("50-50 casino");
             maxDays = dayArray[f];
         }
     }
-    int minDays = dayArray[cells];
-    for (int f = cells; f > 0; f--) 
+    int minDays = dayArray[cells-1];
+    for (int f = cells-1; f > 0; f--) 
 	{
         if (dayArray[f] < minDays) {
             minDays = dayArray[f];
@@ -86,7 +87,7 @@ SetConsoleTitle("50-50 casino");
         middleDays += dayArray[f];
     }
     
-    for (int f = cells; f > 0; f--) 
+    for (int f = cells-1; f > 0; f--) 
 	{
         if (dayArray[f] == minDays) {
             minDaysCounter++;
@@ -112,6 +113,7 @@ SetConsoleTitle("50-50 casino");
             moreThanTen++;
         }
     }
+    //Output
 	cout << "Steps: " << i << endl;
 	cout << "Average \"days\": " << middleDays << " (" << (moreThanMiddle/cell)*100.0 << "% tests better than average)" << endl;
 	cout << "Maximum of days: " << maxDays << " (x" << maxDaysCounter << ")" << endl;
