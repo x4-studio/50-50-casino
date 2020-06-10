@@ -17,3 +17,5 @@ Selection of results (from 10K to 10KK) - https://imgur.com/a/ZgAVxP1
 But remember, my task has an idealistic environment that does not and will not exist in real life.
 The only thing that proves my experiment is acting better than doing nothing.
 -----------------------------------------------------------------------------
+Compiled EXE file - https://drive.google.com/file/d/1mRraeZCsoPZYyNAi2006xu4V_znPAED0/view?usp=sharing
+------------------------------------------------------------------------------------------------------
